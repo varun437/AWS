@@ -1,0 +1,18 @@
+Install Jenkins on Amazon Linux:
+
+sudo yum install java-1.8.0-openjdk
+sudo yum remove java-1.7.0-openjdk -y
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins
+sudo service jenkins start
+
+
+
+-like / notlike  => We need to use wildcards to narrowdown the search.
+
+
+-contains => Checks for exact match in a array, wildcards are not supported
+
+
+-match => Similar to like but no need of wildcards and reex supported.
