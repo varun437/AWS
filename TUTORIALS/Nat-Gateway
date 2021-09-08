@@ -1,0 +1,6 @@
+-TO LOGIN INTO PRIVATE SERVER:-
+  -connect to public server
+  -nano key.pem
+  -paste the VARUN.pem info into key.pem
+  -chmod 400 key.pem
+  -ssh -i key.pem ec2-user@private ip of private server
