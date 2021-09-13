@@ -1,0 +1,16 @@
+-VPC-ENDPOINTS
+  -gateway endpoint and interface endpoint
+
+-GATEWAY ENDPOINT: -
+  -create a s3 endpoint and attach it to the private server
+  -connect to the private server and wget the s3 file
+ 
+ -INTERFACE ENDPOINT: -
+  -endpoints service is only available in intra-region but not in inter-region
+  -one of the use case is to connect a private server using endpoints(private tunnel) instead of connecting it over the internet
+  -create roll with permissions of SSMmanagedinstancecore & SSMfullaccess
+  -assign that role to both public and private servers(wait 10 mins to get role activated or else reboot)
+  -connect to session manager of public-server and connect
+  -private server cannot be connected as it is going to connect over internet(it has no igw)
+  -interface endpoints to be used to connect private server: (ec2messages,ssm,ssmmessages)
+  -after creating the endpoints connect to the private server using sessions manager
