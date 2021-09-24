@@ -1,0 +1,88 @@
+-GENERAL PURPOSE INSTANCES:
+  -balance of compute,memory and networking resources.
+  -A for ARM workload,T for TURBO/TINY(burstable),M for medium balance of resources,N for high network resources.
+  -data processing and backend servers like sap, cluster computing:
+    -M5, M5a
+  -microservices:
+    -T2, T3, T3a, T4g, M6i, M6g, M6gd
+  -web servers:
+    -T2 , T3, T3a, T4g, M6i
+  -app servers:
+    -M6i, M6g, M6gd
+  -dev environments:
+    -T2, T3, T3a, T4g, MAC1
+  -small to midsize databases:
+    -M6i, M6g, M6gd
+  -caching fleets:
+    -M6i, M6g, M6gd, M5, M5a
+  -high performance computing:
+    -M6i, M5zn
+  -midsize datastores:
+    -M6g, M6gd, M5, M5a 
+  -gaming servers:
+    -M6g, M6gd, M5zn
+    
+    
+-COMPUTE OPTIMIZED INSTANCES:
+  -optimized for compute intensive workloads and delivers very cost-effective high performance
+  -C for compute
+  -batch processing workloads and high performance computing and machine learning inference and gaming servers:
+    -C6g, C6gd, C6gn, C5, C5n
+  -media transcoding and scientific modeling:
+    -C5 and C5n
+  -video encoding and distributed analytics:
+    -C6g, C6gd, C6gn
+    
+    
+-MEMORY OPTIMIZED INSTANCES:
+  -optimized for fast performance for workloads that process large data sets in memory
+  -R for ram,X for extreme
+  -in memory caches(Memcached, Redis):
+    -R5, R5a, R5b, R5n, R6g, R6gd
+  -high performance rdbs(MYSQL,NOSQL(mongo,cassandra)) and business intelligence tools(SAP,HANA) 
+   and real time processing of big unstructured data(financial services,hadoop/spark clusters) and electronic design automation applications(EDA):
+    -R5, R5a, R5b, R5n
+  -open source databases(MYSQL,MariaDB, PostgreSQL):
+    -R6g, R6gd
+  -high performance and in-memory databases and memory intensive enterprise applications:
+    -X1e
+  -real time caching servers and real time analytics and high performance databases and electronic deign automation applications:
+    -X2gd
+  -EDA and RDBS:
+    -Z1d
+#.metal instances provide your applications with direct access to physical resources of the host server, such as processors and memory.
+
+
+-STORAGE OPTIMIZED INSTANCES:
+  -optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage
+  -map reduce and hadoop workloads and distributed file systems:
+    -D2, D3, D3en
+  -Massive parallel processing (MPP) data warehouse and logs or data processing applications:
+    -D2
+  -File storage workloads such as GPFC and BeeFS and Large data lakes for HPC workloads:
+    -D3, D3en
+  -Applications that require high-throughput access to large quantities of data:
+    -H1
+  -High frequency online transaction processing (OLTP) systems and data warehousing and RDBS and NRDBS and in-memory databases:
+    -l3, l3en
+  
+  
+-ACCELERATED COMPUTING INSTANCES:
+  -P for performance,G for graphic intensive
+  -uses hardware accelerators, or co-processors, to perform some functions, such as floating point number calculations, graphics processing, or data pattern matching
+  -GPU-based instances provide access to NVIDIA GPUs with thousands of compute cores
+  -machine learning inference, video transcoding, and graphics applications like remote graphics workstations and game streaming in the cloud:
+    -G4ad, G4dn
+  -video creation services, 3D visualizations, streaming graphics-intensive applications, 3D rendering:
+    -G2, G3
+  -high-performance platform for machine learning and HPC workloads:
+    -P4d
+  -deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server-side GPU compute workloads:
+    -P2, P3
+  -These instances are designed to accelerate video transcoding workloads, such as live broadcast, video conferencing, and just-in-time transcoding:
+    -VT1
+  -optimized for deploying deep learning (DL) models for applications, such as natural language processing,
+   object detection and classification content personalization and filtering and speech recognition:
+    -inf1
+  -accelerate workloads such as genomics, financial analysis, real-time video processing, big data analysis, and security workloads by leveraging custom hardware accelerations:
+    -F1
