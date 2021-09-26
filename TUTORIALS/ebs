@@ -1,0 +1,108 @@
+-EBS VOLUMES:
+  -permanent storage
+  -max 16tb storage
+  -size can be increased but not decreased
+  -availability zone dependent
+  -can attach a ebs volume to one instance at a time
+  -use instance store only for use and throw, donot store data and shut down even if it is formatted to fstab.especially becarefull when using latest version like m4,m5
+
+-TYPES OF EBS VOLUMES:
+  -SSD:
+     -GP2(max 16000 iops and min 100 iops (MAX of 3 iops per GB)) & GP3(max 16000 iops and min 3000 iops and has a option of THROUGHPUT):
+       -max throughput 250MB/s
+       -suitable for dev/test environments
+       -offers single-digit milliseconds latencies
+       -boot volumes
+     -IO1/IO2:
+       -max 64000 iops and min 100 iops(MAX of 50 iops per GB)
+       -max throughput 1000MB/s
+       -throughput intensive database and data warehouse workloads
+       -use when application needs low latency and sensitive transactional workloads
+  -HDD:
+     -SC1:
+       -used for less frequently accessed workloads
+       -max 250 iops and 250MB/s throughput
+       -can burst upto 80MB/s per TB
+     -ST1:
+       -used for frequent access, throughput intensive workloads, big data, data warehouse, log processing
+       -max iops 500 and 500MB/s throughput
+       -cannot be a boot volume
+     -STD 
+
+OS: GP2/GP3
+SOFTWARE: SC1/ST1/STD
+PAGEFILE: instance store
+DATA: IO1/IO2
+TRANSACTIONS-LOGS: IO1/IO2
+TEMPDB: instance store
+BACKUPS: SC1/ST1/STD
+#CHOOSE EBS OPTIMIZED WHEN YOU NEED MORE PERFORMANCE IT ADD ONE MORE LINE TO VOLUME INSTEAD OF ROUTINE LINE CONNECTION TO EBS VOLUME
+
+
+-STEPS FOR MOUNTING:
+  -raw format-> format disk -> creating file system -> mount
+  -attach the block to linux
+  -lsblk->shows whether disk is attached or not
+  -fdisk /dev/filename(like xvdf)
+  -click n(n is to add new partition)
+  -click enter 4 times
+  -click w(to format)
+#AFTER THIS PARTITION WILL BE FORMED, SO USE XVDF1 AS FILENAME INSTEAD OF XVDF
+  -type mkfs.ext4 /dev/filename(like XVDF1)(to makefile system)
+  -mkdir /vol1
+  -mount /dev/filename(like XVDF1) /vol1/
+  -df -h(you can see the volume attached now)
+#BUT THERE IS DATA LOSS IF SYSTEM REBOOTS.ADD IN FSTAB TO SAVE DATA:
+  -umount /vol1
+  -nano /etc/fstab
+  -/dev/xvdf1(click TAB)/vol1/(click TAB)ext4(click TAB)paste keyword starting from default....
+  -mount -a
+  -df -h(you can see data vol added in fs tab)
+#TO MOUNT EXISTING RESIZED VOLUME:
+  -growpart /dev/xvdf(click SPACE)1
+  -lsblk-you can see change in size
+  -resize2fs /dev/xvdf1
+  -df -h
+  
+  
+  
+
+-OTHER WAY OF  MOUNTING:
+  -file -s /dev/(filename)(make sure data is there , if data is there it means
+  -there is no filesystem , if file system exists it shows SGX like that 
+  -mkfs -t xfs /dev/(filename)
+  -file -s /dev/xvdf
+  -mkdir -p /(new directory name)
+  -mount /dev/xvdf /(directory name)
+  -df -h to see mount status
+#KEEP A BACKUP OF FSTAB NOTE SO THAT IT WILL BE HELPFUL , IF THE CONTENT ERASES WHILE
+YOU WRITE
+
+
+-OTHER WAY TO MOUNT:
+  -lsblk -> to know volume is attached or not
+#SUDO FILE -S /DEV/XVDF -> TO KNOW WHETHER THERE IS FILE SYSTEM OR NOT(if output shows data, there is no filesystem)
+  -sudo lsblk -f to get info of file systems attached to volumes
+  -sudo mkfs -t xfs /dev/xvdf -> to create file system
+  -sudo yum install xfsprogs -> install XFS by using this command if it is not available
+  -sudo mkdir /vol
+  -sudo mount /dev/xvdf /vol->temp storage
+  -sudo cp/etc/fstab /etc/fstab.orig -> to store backup of fstab info
+  -sudo blkid to get UUID 
+  -sudo vim /etc/fstab
+  -UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2
+  -UUID=  /  xfs  defaults,nofail  0  2
+  -sudo umount /vol
+  -sudo mount -a
+  -sudo mv /etc/fstab.orig /etc/fstab -> to restore the file of fstab
+
+
+-CASE STUDIES:
+                               case 1(reboot)      case2(start/stop)
+ROOT volume(ebs)               data is not lost    data is not lost
+instance store                 data is not lost    data is lost
+user volume                    data is not lost    data is lost
+windows(instance store)        data is not lost    data is lost
+
+
+
