@@ -86,3 +86,28 @@
     -inf1
   -accelerate workloads such as genomics, financial analysis, real-time video processing, big data analysis, and security workloads by leveraging custom hardware accelerations:
     -F1
+
+
+-EC2 PLACEMENT GROUPS:
+  -cluster:
+    -packs instances close together in an availability zone
+    -used for low-latency network performance and high performance computing applicaitons like big data
+    -recommended to launch all the instances in a single launch request to avoid insufficient capacity error
+    -if trying to add few later or stopping/starting server, it can cause error, so restart all instances, they can be placed in the hardware which has enough capacity
+  -partition:
+    -spread instances across logical partitions with an availability zone
+    -suitable for large distributed and replicated workloads like hadoop,cassandra,kafka
+    -they span over multiple availability zones but restricted to 7 instances per availability zone
+    -recommended for applications that have a small number of critical instances that should be kept separate from each other
+    -max 7 partitions per availability zones
+  -spread:
+    -places small groups of instances across distinct underlying hardware
+    -helps reduce corelated failures, for critical applications
+
+
+#ON-DEMAND:spin off when you need, reasonable pricing for mediuam workloads
+#RESERVED:when you need them for long term
+#SCEHDULED RESERVED:when you need them at astrological holy period 
+#SPOT:unused on-demand.short work and cheap and no problem if you loose the data
+#DEDICATED:no one other than you uses the underlying hardware
+
