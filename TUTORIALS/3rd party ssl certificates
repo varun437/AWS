@@ -1,0 +1,15 @@
+
+-if u buy outside , it should give CSR
+-go to CSR generator website
+-give ur domain for which you hosted in route 53(*.awscoffeeshop.xyz or awscoffeeshop.xyz)
+-genrate PUBLIC KEY and CERTIFICATE REQUEST KEY
+-go to your ssl certificate website settings
+-verify it using CNAME
+-paste the cr key and copy the host name/alias name given by them to prove that this is our website
+-create a record of simple routing with host name using cname and route traffic
+to ip address or another value and paste the key by them below the box.
+-download the certificate and open with notepad
+-go to certificate manager in aws and import certificate option
+-copy and paste the text from awscoffeeshop.crt to certficate body
+-copy the key from csr generator and paste the key
+-ca bundle copy the text from it and paste it in the certificate chain
