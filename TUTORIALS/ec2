@@ -110,4 +110,5 @@
 #SCEHDULED RESERVED:when you need them at astrological holy period 
 #SPOT:unused on-demand.short work and cheap and no problem if you loose the data
 #DEDICATED:no one other than you uses the underlying hardware
+#curl http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key(use above command to get OPENSSH key format to use same key in another regions)
 
