@@ -1,0 +1,15 @@
+-create an ad or have an existing microsoft ad 
+-create a windows server in ad region
+-sysdm.cpl->to know ad domain
+-ncpa.cpl->ethernet->rightclick->properties->IPV4->properties->advance->dns->add ip address of ad
+-sysdm.cpl change the domain by entering your ad domain
+-username-Admin
+-go to server manager 
+-click manage->add roles and feature->features->remoteserveradmintools->roleadmintools
+-install & restart
+-before logging into server, login with other account
+-username-admin@domainname.com or onlydomainname/admin
+-password-ur ad password
+-dsa.msc->ad open
+-click users of ur domain name and create users
+-create sso and change identity to ad in settings, add users with permission sets
