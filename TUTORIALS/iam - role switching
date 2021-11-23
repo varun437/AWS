@@ -1,0 +1,17 @@
+-masters account:
+  -create users
+-sub-account:
+  -create a role-with-admin access of option choosing other aws account
+  -copy the arn of the role (arn:aws:iam::255023112448:role/cloud-admin-role)
+-masters account
+  -create assume policy role of arn and attach to the users.
+#Assume-role-policy
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::255023112448:role/cloud-admin-role*"
+  }
+}
+-use permission boundary of admin-role in masters account to set boundaries for the services given to users
