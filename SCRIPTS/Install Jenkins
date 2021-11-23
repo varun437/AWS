@@ -7,6 +7,12 @@ sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 sudo yum install jenkins
 sudo service jenkins start
 
+     (OR)
+     
+#!bin/bash
+apt update
+apt install nfs-common -y
+apt install -y openjdk-8-jdk
 
 
 -like / notlike  => We need to use wildcards to narrowdown the search.
