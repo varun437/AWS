@@ -1,0 +1,8 @@
+#if u dont have ad:
+ad-connector
+add dns server ip and private ip in ncpa.cpl -> alternate dns servers
+#if u have ad already:
+open->server-manager->addroles and feature->add active directory domain services
+promote server to domain controller->Add a new forest->add the domain name andpassword->install
+connect windows with domainname\administrator with windows password
+open sso and change the id to ad connector
