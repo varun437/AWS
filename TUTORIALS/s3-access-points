@@ -1,0 +1,43 @@
+-create 2 folders 
+-create 2 users with no permissions
+-bucketpolicy
+  {
+	"Version": "2012-10-17",
+	"Statement": [
+    	{
+        	"Effect": "Allow",
+        	"Principal": {
+            	"AWS": "*"
+        	},
+        	"Action": "*",
+        	"Resource": [
+            	"arn:aws:s3:::sgw-testing",
+            	"arn:aws:s3:::sgw-testing/*"
+        	],
+        	"Condition": {
+            	"StringEquals": {
+                	"s3:DataAccessPointAccount": "ACC-ID"
+            	}
+        	}
+       	}
+	     ]
+     }
+//s3-access policy
+{
+	"Version": "2012-10-17",
+	"Statement": [
+    	{
+        	"Effect": "Allow",
+        	"Principal": {
+            	"AWS": "arn:aws:iam::ACC-ID:user/testuser1"
+        	},
+        	"Action": "*",
+        	"Resource": "arn:aws:s3:us-east-1:ACC-ID:accesspoint/testuser1-access-point/object/testuser1/*"
+    	}
+	]
+}
+
+-commands to upload the file:
+  -aws s3 cp test1-1(filename) s3://arn:aws:s3:us-east-1:255023112448:accesspoint:testuser1-access-point(access-point-name)/testuser1(s3-folder)/test1-1(filename) --profile testuser1(username)
+
+
