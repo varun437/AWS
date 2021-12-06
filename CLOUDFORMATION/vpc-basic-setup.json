@@ -1,14 +1,7 @@
-# provisions the following resources:
- - vpc
- - public subnet
- - route table
- - internet gateway
- - security group with http port
-
 
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "AWS-CF-1",
+	"Description": "Creates vpc,public subnet, route table, internet gateway, security group(http-port)",
 	"Metadata": {
 		"AWS::CloudFormation::Interface": {
 			"ParameterGroups": [{
