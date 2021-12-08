@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template to Create an EC2 instance in a VPC
+   
+Parameters:
+
+  ImageId:
+    Type: String
+    Description: 'Ubuntu V:20 AMI for N.Virginia us-east-1bRegion'
+    Default: 'ami-083654bd07b5da81d'
+  VpcId:
+    Type: String
+    Description: VPC id
+    Default: vpc-0bd7ebbc85d204e50
+  SubnetId:
+    Type: String
+    Description: Subnet in which to launch an EC2
+    Default: subnet-0335b93bb35d2e030
+  AvailabilityZone:
+    Type: String
+    Description: Availability Zone into which instance will launch
+    Default: us-east-1b
+  InstanceType:
+    Type: String
+    Description: Choosing  t2 micro because it is free
+    Default: t2.micro 
+
+Resources:
+  DemoInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties: 
+      ImageId: !Ref ImageId
+      InstanceType: !Ref InstanceType
+      AvailabilityZone: !Ref AvailabilityZone
+      KeyName: '{{resolve:ssm:/cf/keypair:1}}'
+      SecurityGroupIds: 
+        - '{{resolve:ssm:/cf/sg:1}}'
+      SubnetId: !Ref SubnetId
+
+Outputs:
+  DemoInstanceId:
+    Description: Instance Id 
+    Value: !Ref DemoInstance
