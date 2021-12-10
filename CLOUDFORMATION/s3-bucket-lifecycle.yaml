@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Template to setup lifecycle configuration for an log folder from standard to standard_ia and from standard_ia to glacier and deletion after 1year of timeline of file.
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the bucket on which lifecycle configuration will apply
+    Default: bucketname(only-small-letters)
+Resources:
+  DemoBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: Rule for log prefix
+            Prefix: logs
+            Status: Enabled
+            Transitions:
+              - TransitionInDays: 30
+                StorageClass: STANDARD_IA
+              - TransitionInDays: 90
+                StorageClass: GLACIER
+            ExpirationInDays: 365
+Outputs:
+  BucketName:
+    Value: !Ref DemoBucket
+    Description: Name of the sample Amazon S3 bucket with a lifecycle configuration.
