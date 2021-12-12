@@ -1,0 +1,5 @@
+-create a sgw
+  -create a fileshare in sgw with existing bucket name
+  -apt update
+  -apt install nfs-common -y ->to install nfs client
+  -create a mkdir and mount sgw to the folder using command given in sgw
