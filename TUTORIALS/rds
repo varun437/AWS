@@ -1,0 +1,24 @@
+-DATABASE:
+#windows
+  -RDS(structured data): mysql,postgres,mssql,oracle,aws aurora(diff engines) 
+  -install mysql workbench with .net framework(leave if alread exist) and connect to it using username and rds endpoint.
+
+#in linux
+  -apt update
+  -apt install python3-pip -y
+  -pip3 install sqlalchemy
+  -pip3 install pymysql
+
+#sample script to query database
+  -nano app.py
+    import sqlalchemy as sal
+    import pymysql
+    from sqlalchemy import create_engine
+    cnx = create_engine('mysql+pymysql://admin(db-username):9515817576(password)@database-1.ci9sqclkdhrb.us-east-1.rds.amazonaws.com(db-endpoint)/myflixdb(db-table-name)')
+    data = cnx.execute("select * from movies").fetchall()
+    for item in data:
+       print(item)
+#run above script by python3 app.py
+
+#to watch database every second
+  -watch -n 1 python3 app.py
