@@ -1,0 +1,26 @@
+-SystemsManager:-
+  -RunCommand
+    -ssm agent will be by default in amazon linux and ubuntu,
+    -windows,whereas in other it should be installed
+    -can be used to update softwares or add users without loggin in
+    -can use shell script and do your task to many no of servers
+
+  -ParameterStore
+    -used to store parameters like secure(username,data) and insecure data(instance type)
+    -we can use this parameters in cloud formation instead of usign real username and password
+    -in parameter name shouldnt start with aws(correct eg:/b2aws)
+    -in parameters passwords cant be auto generated and no cross account access
+
+  -HybridActivations & Fleet Manager:
+    -used to manage instancs on other clouds or on on-premises data center
+    -create a activation 
+
+  -patch manager:
+    -used to do patching using systems manager 
+
+  -Automations with Documents:
+    -automating with the documents they give
+
+  -ControlTower:
+    -helps us managing for creating a high level architecture for beginner(creates separate OU's for log servers,patching servers, audits,.etc) 
+
