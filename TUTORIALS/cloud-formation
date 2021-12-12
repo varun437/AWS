@@ -1,0 +1,27 @@
+-CLOUDFORMATION using master account deploy in sub accounts
+  -awscloudformationstacksetadministrationrole ->doc(copy the S3-link address)
+  -create a stack set in master account(check role created or not in iam)
+
+  -awscloudformationstacksetexecutionrole ->doc(copy the S3-link address)
+  -create a stack set in sub account and paste the master id in parameter section
+
+  -create an organizationla OU and add those sub accounts to the OU created
+#ami ids are different for every region(if u use ami id using cf to launch server)
+#so mappings are used(doc -> aws cloud formation mapping) & to use the ami id use(fn.findmap given next section of doc)
+  -in deployment, select OU instead of organization
+  -select regions from given ami ids only
+#deploying a cf template in multiple accounts and regions is a STACKSET
+#nested a cf template inside another cf template and deploying it is called NESTED STACK
+#Drifting(checks whether manual changes are made to resources made by cf template)
+#if any extra resources attached to cf resources,it wont detect(drawback)
+#StackPolicy(excludes the update options to specified resouces)
+
+
+-Cloudformation(Importing of Resources):
+  -to import a resource add the code in cf and add a Deletionpolicy:"Retain" to that code
+#to import some resources, you need to import inside the stack
+  -if you need to delete all resources including imported resource then change deletionpolicy to "delete"
+  -to create cloudformation using existing infra:
+    -to import all existing infra , you need to import outside the stack
+    -all the resources must have a tag of Deletionpolicy:"Retain"
+#former2 can be used as an alternative for importing resouces
