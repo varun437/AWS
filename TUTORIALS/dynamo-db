@@ -1,0 +1,98 @@
+-DynamoDB(NoSQL key value pair):
+  -apis cannot write directly to dynamo db , it should written through lambda
+  -create a table db
+  -create of lambda function of blueprint of type mobile
+
+#sample database query
+{
+  "operation": "create",
+  "payload":{
+  	"TableName":"bookstore",
+  	"Item":{
+      	"id":11,
+      	"author":"Lobert K",
+      	"bookname":"kich Dad & koor Dad",
+      	"Location":"UAE",
+  	}
+  }
+}
+
+  -test connection between db and lambda
+  -create a rest api
+  -create a resource and create two methods of put and post
+  
+ 
+#sample put
+------------------------------USE PUT----------------------------
+{
+  "operation": "create",
+  "payload":{
+  	"TableName":"bookstore",
+  	"Item":{
+      	"Id":10,
+      	"author":"Robert K",
+      	"bookname":"Rich Dad & Poor Dad",
+      	"Location":"USA",
+    	"State":"Hawaii"
+  	}
+  }
+}
+
+#sammple post
+ -----------------USE POST-----------------------------
+{
+  "operation": "read",
+  "payload":{
+  	"TableName":"bookstore",
+  	"Key":{
+      	"Id":1
+  	}
+  }
+}
+
+
+-MONGO DB(NoSQL):
+  -create a mongodb
+  -launch a ubuntu server
+  -install mongo shell:-
+    -apt install mongodb-clients -y
+    -mongo --version
+  -go to monogo db, copy the link to download certificate(wget) and connect using connect endpoint 
+
+#sample write
+-write this data in server:
+   db.helo.insertMany([
+        	{ "_id" : 1, "name" : "Matt", "status": "active", "level": 12, "score":202},
+        	{ "_id" : 2, "name" : "Frank", "status": "inactive", "level": 2, "score":9},
+        	{ "_id" : 3, "name" : "Karen", "status": "active", "level": 7, "score":87},
+        	{ "_id" : 4, "name" : "Katie", "status": "active", "level": 3, "score":27, "status": "married", "emp": "yes", "kids": 3}
+        	])
+       	 
+#then query it:
+   -db.helo.find({name: "Katie"})
+   
+   -db.helo.find({name: "Matt"})
+
+
+#to write using python:
+
+  -apt install python3-pip 
+  -pip3 install pymongo
+  -create app.py and do:
+    import pymongo
+    paste the 3rd endpoint of mongo db (connect to cluster with an application)
+    mydb = myclient["test"](table name)
+    col = mydb["profiles"](row name='helo')
+    x = col.find_one()
+    y = col.find()
+    print(x)
+    for doc in y:
+        print(doc)
+
+
+
+
+
+
+
+
