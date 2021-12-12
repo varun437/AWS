@@ -1,0 +1,27 @@
+-RedShift(postgreSQL):
+  -create a red shift subnet grp and cluster
+  -create a windows server 
+  -install java sdk(jdk-8u261) in cdrive in windows server
+  -copy all the loaddatasample(sample-files) into s3
+  -download java driver without aws in config section of redshift
+  -put the driver in cdrive of windows
+  -download sql stable workbench from given site in redshift config section
+  -and put in cdrive and extract it and double click on sqlworkbench64
+  -click on manage drivers and then click redshift
+  -remove existing jar file and open the redshift jar file u downloaded
+  -click ok and then in driver click redshift and copy jdkurl in config page and 
+  -give in url,username &password
+  -and give autocommit and test the connection and click ok
+#LOAD DATA FROM S3 TO REDSHIFT
+#run this command in database(access key and secret key must have an permission to access redshift)
+copy part
+from 's3://sgw-testing/part-csv.tbl'
+credentials 'aws_access_key_id=AKIATWYEP4EAB3YPJBFK;aws_secret_access_key=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'
+csv
+null as '\000';
+
+
+#ElastiCache(in memory databse)(others db data are saved in disk): speeds up website performance or trasactions,data cache.
+#KEYSPACES(CASSANDRA(ALSO SAME LIKE MONGODB))
+#TIMESTREAM(IOT apps, devops use cases constraint:time(same like influx db))
+#NEPTUNE(FOR RELATIONSHIPS ON SOCIAL MEDIA,TRANSACTIONS OR FRAUD DETECTIONS)
