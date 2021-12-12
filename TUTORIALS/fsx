@@ -1,0 +1,10 @@
+-create a fsx linking to aws ad or self ad
+  -configure ad in windows like dns and installing ad ds and ad lds tools,etc if using aws ad
+  -sysdm.cpl->to change domain
+  -create users
+  -mstsc->to connect using rdp
+  -lusrmgr.msc->groups->remote desktop users->add users
+  -run command \\(fsx-dns-name)\share->to to open fsx
+-to connect to users login into rdp username@domainname.com and password and run above command
+-to make users access only particular folders
+  -click on folder properties->security->advanced->add only required user
